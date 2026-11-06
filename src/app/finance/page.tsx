@@ -1,5 +1,4 @@
 import React from 'react';
-import { ConsoleShell } from '@/components/ConsoleShell';
 import { FinanceOverview } from '@/components/finance/FinanceOverview';
 
 export const metadata = {
@@ -8,11 +7,10 @@ export const metadata = {
 };
 
 export default function FinancePage() {
-  // Full-bleed shell: the finance surface must fill the viewport with a
-  // retractable rail. Do not cap this route to a fixed centre column, because
-  // that leaves most of a large CFO panel empty.
+  // The full-bleed shell and retractable rail come from finance/layout.tsx.
+  // Render content only. Do not add a width cap or a second container here.
   return (
-    <ConsoleShell>
+    <>
       <header className="h-14 shrink-0 flex items-center justify-between border-b border-slate-800 px-6">
         <div className="flex items-center gap-3">
           <span className="text-sm font-semibold tracking-tight text-slate-100">
@@ -36,6 +34,6 @@ export default function FinancePage() {
         </section>
         <FinanceOverview />
       </main>
-    </ConsoleShell>
+    </>
   );
 }

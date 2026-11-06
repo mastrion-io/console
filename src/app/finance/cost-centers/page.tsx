@@ -7,8 +7,9 @@ export const metadata = {
 };
 
 export default function CostCentersPage() {
+  // Shell comes from finance/layout.tsx. Content only, no width cap.
   return (
-    <main className="max-w-7xl w-full mx-auto p-6 space-y-6">
+    <main className="flex-1 overflow-y-auto p-6 space-y-6">
       <div>
         <h1 className="text-lg font-semibold text-slate-100">Finance · Cost centers</h1>
         <p className="text-xs text-slate-500">
