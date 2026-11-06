@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mastrion-console:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/mastrion-io/console:1.0.0
+    container_name: mastrion-console
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - MASTRION_REMOTE_TELEMETRY=true
+      - MASTRION_WAYPOINT_SOCKET=http://127.0.0.1:8085
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
