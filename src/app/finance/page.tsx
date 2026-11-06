@@ -1,39 +1,31 @@
 import React from 'react';
-import { FinanceOverview } from '@/components/finance/FinanceOverview';
+import { loadFinanceData } from '@/lib/finance/demo-mode';
+import { FinanceHeader } from '@/components/finance/FinanceHeader';
+import { SpendPanel } from '@/components/finance/SpendPanel';
+import { BudgetPanel } from '@/components/finance/BudgetPanel';
+import { SavingsPanel } from '@/components/finance/SavingsPanel';
+import { InvoicesPanel } from '@/components/finance/InvoicesPanel';
+import { AgentPanel } from '@/components/finance/AgentPanel';
 
-export const metadata = {
-  title: 'Finance Overview | Mastrion Enterprise Console',
-  description: 'CFO cost overview: headline KPIs and 90 day spend trajectory.',
-};
+export default async function FinancePage() {
+  const { data, demo } = await loadFinanceData();
 
-export default function FinancePage() {
-  // The full-bleed shell and retractable rail come from finance/layout.tsx.
-  // Render content only. Do not add a width cap or a second container here.
   return (
-    <>
-      <header className="h-14 shrink-0 flex items-center justify-between border-b border-slate-800 px-6">
-        <div className="flex items-center gap-3">
-          <span className="text-sm font-semibold tracking-tight text-slate-100">
-            Finance Control Plane
-          </span>
-          <span className="text-[11px] font-mono text-slate-500">
-            CONSOLE-EPIC-FIN
-          </span>
-        </div>
-        <span className="text-sm font-semibold tracking-tight text-slate-400">
-          Mastrion
-        </span>
-      </header>
+    <main className="flex-1 overflow-y-auto p-6 space-y-6">
+      <FinanceHeader
+        title="Finance overview"
+        subtitle="Spend, budget, savings and invoices across the sovereign runtime fabric"
+        demo={demo}
+      />
 
-      <main className="flex-1 overflow-y-auto p-6 space-y-6">
-        <section className="space-y-1">
-          <h1 className="text-lg font-semibold text-slate-100">Finance overview</h1>
-          <p className="text-xs text-slate-500">
-            Headline cost KPIs and 90 day spend trajectory for the sovereign runtime fabric.
-          </p>
-        </section>
-        <FinanceOverview />
-      </main>
-    </>
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <SpendPanel costCenters={data.costCenters} />
+        <BudgetPanel projection={data.projection} />
+        <SavingsPanel routes={data.routes} />
+        <InvoicesPanel invoices={data.invoices} />
+      </div>
+
+      <AgentPanel demo={demo} />
+    </main>
   );
 }
