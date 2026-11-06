@@ -6,6 +6,7 @@ import { MicroMetricCards } from '@/components/MicroMetricCards';
 import { LiveLatencyChart } from '@/components/LiveLatencyChart';
 import { StreamingPIIRedactionTable } from '@/components/StreamingPIIRedactionTable';
 import { RadixCacheReclaimMonitor } from '@/components/RadixCacheReclaimMonitor';
+import { TelemetryStatusCard } from '@/components/TelemetryStatusCard';
 import { ShieldCheck, Activity, Terminal, ExternalLink } from 'lucide-react';
 
 export default function Home() {
@@ -40,6 +41,14 @@ export default function Home() {
             </span>
           </div>
         )}
+
+        {/* Telemetry Egress & Airgap Card (PRD-MST-103) */}
+        <TelemetryStatusCard 
+          cluster={cluster}
+          namespace={namespace}
+          airgapActive={airgapActive}
+          setAirgapActive={setAirgapActive}
+        />
 
         {/* Micro-metric telemetry cards */}
         <MicroMetricCards />
