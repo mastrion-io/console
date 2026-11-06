@@ -1,34 +1,23 @@
 import React from 'react';
-import { ConsoleShell } from '@/components/ConsoleShell';
+import { FinanceOverview } from '@/components/finance/FinanceOverview';
+
+export const metadata = {
+  title: 'Finance Overview | Mastrion Enterprise Console',
+  description: 'CFO cost overview: headline KPIs and 90 day spend trajectory.',
+};
 
 export default function FinancePage() {
   return (
-    <ConsoleShell>
-      <header className="h-14 shrink-0 flex items-center justify-between border-b border-slate-800 px-6">
-        <div className="flex items-center gap-3">
-          <span className="text-sm font-semibold tracking-tight text-slate-100">
-            Finance Control Plane
-          </span>
-          <span className="text-[11px] font-mono text-slate-500">
-            CONSOLE-EPIC-FIN
-          </span>
-        </div>
-        <span className="text-sm font-semibold tracking-tight text-slate-400">
-          Mastrion
-        </span>
-      </header>
-
-      <main className="flex-1 overflow-y-auto p-6">
-        <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-6">
-          <h1 className="text-lg font-semibold text-slate-100">
-            Finance Control Plane
-          </h1>
-          <p className="mt-2 text-sm text-slate-400">
-            The finance dashboard is loading. Live cost, budget and invoice
-            telemetry will appear here once MST-FIN-103 lands.
+    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+      <main className="flex-1 max-w-7xl w-full mx-auto p-6 space-y-6">
+        <header className="space-y-1">
+          <h1 className="text-lg font-semibold text-slate-100">Finance overview</h1>
+          <p className="text-xs text-slate-500">
+            Headline cost KPIs and 90 day spend trajectory for the sovereign runtime fabric.
           </p>
-        </div>
+        </header>
+        <FinanceOverview />
       </main>
-    </ConsoleShell>
+    </div>
   );
 }
