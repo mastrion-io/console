@@ -31,20 +31,23 @@ export async function GET(req: NextRequest) {
     return new Response('No upstream stream body', { status: 502 });
   }
 
-  const stream = new ReadableStream({
-    async start(controller) {
-      const reader = upstreamResponse.body!.getReader();
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          controller.enqueue(value);
-        }
-      } catch (err) {
-        controller.error(err);
-      } finally {
+  // MAR-002: relay with a pull-driven stream. The previous push loop (while (read) enqueue) looked
+  // identical on the happy path but sat parked in an await that a client disconnect could not
+  // interrupt, so every closed browser tab leaked a mastriond stream into the proxy. With pull(),
+  // a chunk is fetched only when the browser asks for it, and cancel() tears the upstream down.
+  const upstream = upstreamResponse;
+  const upstreamReader = upstream.body!.getReader();
+  const stream = new ReadableStream<Uint8Array>({
+    async pull(controller) {
+      const { done, value } = await upstreamReader.read();
+      if (done) {
         controller.close();
+        return;
       }
+      controller.enqueue(value);
+    },
+    cancel(reason) {
+      void upstreamReader.cancel(reason).catch(() => { /* upstream already gone */ });
     },
   });
 
@@ -54,6 +57,9 @@ export async function GET(req: NextRequest) {
       'Cache-Control': 'no-cache, no-transform',
       Connection: 'keep-alive',
       'X-Accel-Buffering': 'no',
+      // Evidence for PRD-MST-102 / MST-OPS-004: the response names the daemon it is really
+      // streaming from, so a fixture masquerading as a stream cannot hide behind a 200.
+      'X-Mastrion-Upstream': upstreamUrl,
     },
   });
 }

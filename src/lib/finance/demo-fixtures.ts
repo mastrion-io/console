@@ -124,8 +124,12 @@ export const DEMO_ROUTES: RouteSpend[] = [
     id: 'route-frontier-draft',
     label: 'Frontier drafting (DeepSeek)',
     tier: 'frontier',
+    // MAR-002: was 70,400 EUR for 88,000 x 0.80 EUR of cost, which made the route sum 194,000 while
+    // cost centres and the KPI totalled 200,000 - the CFO demo panel printed two totals on one
+    // screen. 76,400 keeps the 8.4x frontier premium on 0.80 vs 0.01 EUR/request and reconciles all
+    // three to 200,000 (see demo-fixtures.test.ts).
     requests: 88000,
-    spendEur: 70400,
+    spendEur: 76400,
     avgCostPerRequestEur: 0.8,
   },
 ];
