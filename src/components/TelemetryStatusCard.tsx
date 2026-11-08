@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { ShieldCheck, ShieldAlert, Radio, Send, RefreshCw, Lock, AlertTriangle } from 'lucide-react';
+import React from 'react';
+import { Radio, Lock, ShieldCheck, ArrowUpRight } from 'lucide-react';
 
-interface TelemetryStatusCardProps {
+interface TelemetryCardProps {
   cluster: string;
   namespace: string;
   airgapActive: boolean;
-  setAirgapActive: (val: boolean) => void;
+  setAirgapActive: (v: boolean) => void;
 }
 
 export function TelemetryStatusCard({
@@ -15,120 +15,63 @@ export function TelemetryStatusCard({
   namespace,
   airgapActive,
   setAirgapActive,
-}: TelemetryStatusCardProps) {
-  const [lastDispatch, setLastDispatch] = useState<any>(null);
-  const [dispatching, setDispatching] = useState(false);
-  const [autoHeartbeat, setAutoHeartbeat] = useState(true);
-
-  const sendHeartbeat = async () => {
-    setDispatching(true);
-    try {
-      const res = await fetch('/api/telemetry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          clusterId: cluster,
-          namespace: namespace,
-          airgapActive: airgapActive,
-        }),
-      });
-      const data = await res.json();
-      setLastDispatch(data);
-    } catch (err: any) {
-      setLastDispatch({ error: err.message, delivered: false });
-    } finally {
-      setDispatching(false);
-    }
-  };
-
-  useEffect(() => {
-    // Initial heartbeat
-    sendHeartbeat();
-
-    // Recurring heartbeat every 15s if auto enabled
-    if (!autoHeartbeat) return;
-    const interval = setInterval(sendHeartbeat, 15000);
-    return () => clearInterval(interval);
-  }, [cluster, namespace, airgapActive, autoHeartbeat]);
-
+}: TelemetryCardProps) {
   return (
-    <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/60 backdrop-blur space-y-3">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-800 gap-2">
-        <div className="flex items-center gap-2">
-          {airgapActive ? (
-            <ShieldAlert className="w-4 h-4 text-amber-400" />
-          ) : (
-            <Radio className="w-4 h-4 text-emerald-400 animate-pulse" />
-          )}
-          <h4 className="font-semibold text-slate-100 text-xs">
-            Firewalled Telemetry Egress (PRD-MST-103)
-          </h4>
-          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">
-            telemetry.mastrion.eu:8443
-          </span>
-        </div>
-
+    <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm transition-colors space-y-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => setAirgapActive(!airgapActive)}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer border ${
-              airgapActive
-                ? 'bg-amber-950/80 border-amber-600 text-amber-300'
-                : 'bg-slate-800 border-slate-700 text-slate-300 hover:border-slate-600'
-            }`}
-          >
-            <Lock className="w-3 h-3" />
-            Airgap Kill-Switch: {airgapActive ? 'ENGAGED' : 'DISENGAGED'}
-          </button>
-
-          <button
-            onClick={sendHeartbeat}
-            disabled={dispatching}
-            className="p-1.5 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer disabled:opacity-50"
-            title="Trigger Heartbeat Test Now"
-          >
-            <RefreshCw className={`w-3.5 h-3.5 ${dispatching ? 'animate-spin text-brand-400' : ''}`} />
-          </button>
+          <div className={`p-2 rounded-lg border ${
+            airgapActive 
+              ? 'bg-amber-50 dark:bg-amber-950/60 border-amber-200 dark:border-amber-800 text-amber-600 dark:text-amber-400' 
+              : 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400'
+          }`}>
+            <Radio className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <h3 className="font-semibold text-sm text-slate-900 dark:text-slate-100">Dedicated Telemetry Egress Channel</h3>
+              <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
+                airgapActive
+                  ? 'bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300'
+                  : 'bg-emerald-50 dark:bg-emerald-950 border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300'
+              }`}>
+                {airgapActive ? 'Airgap Active (Zero Egress)' : 'Heartbeat Active'}
+              </span>
+            </div>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              Outbound-only TLS pinned heartbeat to <span className="font-mono text-slate-700 dark:text-slate-300">telemetry.mastrion.eu:8443</span>. Zero customer prompts or PII ever cross the wire.
+            </p>
+          </div>
         </div>
+
+        <button
+          onClick={() => setAirgapActive(!airgapActive)}
+          className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors cursor-pointer ${
+            airgapActive
+              ? 'bg-amber-50 dark:bg-amber-900/40 border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-200 hover:bg-amber-100'
+              : 'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700'
+          }`}
+        >
+          {airgapActive ? 'Disable Airgap (Enable Egress)' : 'Engage Airgap Kill-Switch'}
+        </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono">
-        <div className="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
-          <span className="text-slate-500 block text-[10px] uppercase">Firewall Policy</span>
-          <span className="text-slate-200 font-semibold">Strict Outbound Allowlist</span>
-          <span className="text-[10px] text-slate-400 block mt-0.5">Zero Prompt / Zero PII Allowed</span>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/80 text-xs font-mono">
+        <div>
+          <span className="text-slate-400 text-[10px]">CLUSTER:</span>
+          <div className="font-medium text-slate-800 dark:text-slate-200">{cluster}</div>
         </div>
-
-        <div className="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
-          <span className="text-slate-500 block text-[10px] uppercase">Egress Status</span>
-          {airgapActive ? (
-            <span className="text-amber-400 font-semibold flex items-center gap-1">
-              <AlertTriangle className="w-3 h-3" />
-              BLOCKED (Total Airgap)
-            </span>
-          ) : lastDispatch?.delivered ? (
-            <span className="text-emerald-400 font-semibold flex items-center gap-1">
-              <ShieldCheck className="w-3 h-3" />
-              DELIVERED (HTTP 200)
-            </span>
-          ) : (
-            <span className="text-slate-400 font-semibold">
-              {lastDispatch?.error ? 'FAIL-CLOSED (Offline Safe)' : 'READY'}
-            </span>
-          )}
-          <span className="text-[10px] text-slate-500 block mt-0.5 truncate">
-            {lastDispatch?.targetEndpoint || 'telemetry.mastrion.eu:8443'}
-          </span>
+        <div>
+          <span className="text-slate-400 text-[10px]">SCOPE:</span>
+          <div className="font-medium text-slate-800 dark:text-slate-200">{namespace}</div>
         </div>
-
-        <div className="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
-          <span className="text-slate-500 block text-[10px] uppercase">Verification Receipt</span>
-          <span className="text-slate-300 truncate block">
-            {airgapActive ? 'DROP_AT_GATEWAY (0 Bytes Egressed)' : lastDispatch?.error ? lastDispatch.error : 'HMAC-SHA256 Payload Verified'}
-          </span>
-          <span className="text-[10px] text-slate-500 block mt-0.5">
-            Auto-Heartbeat: 15s interval
-          </span>
+        <div>
+          <span className="text-slate-400 text-[10px]">ENCRYPTION:</span>
+          <div className="font-medium text-emerald-600 dark:text-emerald-400">mTLS + SPIFFE</div>
+        </div>
+        <div>
+          <span className="text-slate-400 text-[10px]">INBOUND PORTS:</span>
+          <div className="font-medium text-slate-800 dark:text-slate-200">0 (Strictly Blocked)</div>
         </div>
       </div>
     </div>
