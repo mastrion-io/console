@@ -18,6 +18,7 @@ import {
   PanelLeftOpen,
   Cpu,
   Users,
+  BookOpen,
 } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 
@@ -37,9 +38,9 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/finance/budgets', label: 'Budgets', icon: Wallet },
   { href: '/finance/invoices', label: 'Invoices', icon: Receipt },
   { href: '/finance/arbitrage', label: 'Cost Arbitrage', icon: Scale },
-  { href: '/finance/close-pack', label: 'Compliance Pack', icon: ShieldCheck },
   { href: '/finance/commitments', label: 'Commitments', icon: ShieldCheck },
   { href: '/finance/agent', label: 'Finance Agent', icon: Bot },
+  { href: '/docs', label: 'Documentation & AI Help', icon: BookOpen },
   { href: '/admin/users', label: 'User Admin', icon: Users },
 ];
 
