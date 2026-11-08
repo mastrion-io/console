@@ -6,7 +6,7 @@ import { ShieldCheck, Lock, Mail, ArrowRight, AlertCircle, Key } from 'lucide-re
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('admin@mastrion.local');
+  const [email, setEmail] = useState('mofesola@mastrion.eu');
   const [password, setPassword] = useState('mastrion-enterprise');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -70,7 +70,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@mastrion.local"
+                placeholder="mofesola@mastrion.eu"
                 className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 pl-9 pr-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-hidden focus:ring-2 focus:ring-brand-500"
               />
             </div>
@@ -107,7 +107,7 @@ export default function LoginPage() {
 
         <div className="pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
           <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400">
-            <Key className="w-3.5 h-3.5" /> Dev Mode Active: <code>admin@mastrion.local</code> / <code>mastrion-enterprise</code>
+            <Key className="w-3.5 h-3.5" /> Dev Mode Active: <code>mofesola@mastrion.eu</code> / <code>mastrion-enterprise</code>
           </div>
         </div>
       </div>

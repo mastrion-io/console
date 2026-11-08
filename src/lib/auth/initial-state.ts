@@ -3,7 +3,7 @@ import { User, SetupConfig } from './types';
 export const INITIAL_SETUP: SetupConfig = {
   completed: true, // Default to true for dev/preview; setup wizard accessible at /setup
   clusterName: 'mst-cluster-fra-01',
-  adminEmail: 'admin@mastrion.local',
+  adminEmail: 'mofesola@mastrion.eu',
   primarySiliconHost: 'http://127.0.0.1:11434',
   defaultLocalModel: 'deepseek-r1:1.5b',
   auditKeyConfigured: true,
@@ -14,7 +14,7 @@ export const INITIAL_SETUP: SetupConfig = {
 export const INITIAL_USERS: User[] = [
   {
     id: 'usr-admin-1',
-    email: 'admin@mastrion.local',
+    email: 'mofesola@mastrion.eu',
     name: 'Platform Administrator',
     role: 'PLATFORM_ADMIN',
     costCenter: 'CC-4421-PLATFORM',
@@ -25,7 +25,7 @@ export const INITIAL_USERS: User[] = [
   },
   {
     id: 'usr-auditor-1',
-    email: 'compliance@mastrion.local',
+    email: 'hannah@mastrion.eu',
     name: 'Chief Compliance Officer',
     role: 'COMPLIANCE_AUDITOR',
     costCenter: 'CC-4422-COMPLIANCE',

@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
 
     if (!user || password !== 'mastrion-enterprise') {
       // Allow fallback login with admin credentials
-      if (email === 'admin@mastrion.local' || password === 'admin') {
+      if (email === 'mofesola@mastrion.eu' || password === 'admin') {
         const adminUser = INITIAL_USERS[0];
         const res = NextResponse.json({ success: true, user: adminUser });
         res.cookies.set('mastrion_session', adminUser.id, {
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       }
 
       return NextResponse.json(
-        { error: 'Invalid credentials. For dev mode, use admin@mastrion.local / mastrion-enterprise' },
+        { error: 'Invalid credentials. For dev mode, use mofesola@mastrion.eu / mastrion-enterprise' },
         { status: 401 }
       );
     }

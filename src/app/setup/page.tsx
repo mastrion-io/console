@@ -20,7 +20,7 @@ export default function SetupPage() {
   const [config, setConfig] = useState<SetupConfig>({
     completed: false,
     clusterName: 'mst-cluster-fra-01',
-    adminEmail: 'admin@mastrion.local',
+    adminEmail: 'mofesola@mastrion.eu',
     primarySiliconHost: 'http://127.0.0.1:11434',
     defaultLocalModel: 'deepseek-r1:1.5b',
     auditKeyConfigured: true,
