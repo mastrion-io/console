@@ -26,7 +26,7 @@ export function FinanceTrajectoryChart({ trajectory }: FinanceTrajectoryChartPro
       className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4"
     >
       <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-slate-200">Spend trajectory (90 days)</h2>
+        <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Spend trajectory (90 days)</h2>
         <span className="text-[11px] text-slate-500">Daily spend · 7d moving average · budget ceiling</span>
       </div>
 

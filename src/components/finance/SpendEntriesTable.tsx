@@ -48,10 +48,10 @@ export function SpendEntriesTable({ entries }: SpendEntriesTableProps) {
                 {visible.map((entry) => (
                   <tr key={entry.id} className="border-b border-slate-800/60 hover:bg-slate-800/40">
                     <td className="px-3 py-2 font-mono text-xs tabular-nums text-slate-400">{entry.date}</td>
-                    <td className="px-3 py-2 text-slate-200">{entry.description}</td>
-                    <td className="px-3 py-2 text-slate-300">{entry.model}</td>
-                    <td className="px-3 py-2 text-slate-300">{entry.user}</td>
-                    <td className="px-3 py-2 text-right font-mono text-xs tabular-nums text-slate-200">
+                    <td className="px-3 py-2 text-slate-900 dark:text-slate-100">{entry.description}</td>
+                    <td className="px-3 py-2 text-slate-700 dark:text-slate-300">{entry.model}</td>
+                    <td className="px-3 py-2 text-slate-700 dark:text-slate-300">{entry.user}</td>
+                    <td className="px-3 py-2 text-right font-mono text-xs tabular-nums text-slate-900 dark:text-slate-100">
                       {formatEur(entry.amountCents)}
                     </td>
                   </tr>
@@ -65,7 +65,7 @@ export function SpendEntriesTable({ entries }: SpendEntriesTableProps) {
               type="button"
               onClick={() => setPage((p) => Math.max(0, p - 1))}
               disabled={safePage === 0}
-              className="inline-flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/80 px-2.5 py-1 text-xs text-slate-200 hover:bg-slate-700/80 disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              className="inline-flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/80 px-2.5 py-1 text-xs text-slate-900 dark:text-slate-100 hover:bg-slate-700/80 disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
             >
               <ChevronLeft className="w-3.5 h-3.5" aria-hidden="true" />
               Previous
@@ -77,7 +77,7 @@ export function SpendEntriesTable({ entries }: SpendEntriesTableProps) {
               type="button"
               onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
               disabled={safePage >= pageCount - 1}
-              className="inline-flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/80 px-2.5 py-1 text-xs text-slate-200 hover:bg-slate-700/80 disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              className="inline-flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/80 px-2.5 py-1 text-xs text-slate-900 dark:text-slate-100 hover:bg-slate-700/80 disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
             >
               Next
               <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />

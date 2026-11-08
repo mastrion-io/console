@@ -91,7 +91,7 @@ export function ArbitrageLedger({
 
       <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm overflow-hidden">
         <div className="px-4 py-3 border-b border-slate-800">
-          <h2 className="text-sm font-semibold text-slate-200">
+          <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
             Route comparison
           </h2>
         </div>
@@ -112,7 +112,7 @@ export function ArbitrageLedger({
             <tbody className="divide-y divide-slate-800/70">
               {rows.map((row) => (
                 <tr key={row.id} className="hover:bg-slate-800/30">
-                  <td className="px-4 py-2 text-slate-200">{row.name}</td>
+                  <td className="px-4 py-2 text-slate-900 dark:text-slate-100">{row.name}</td>
                   <td className="px-4 py-2">
                     <span
                       className={`inline-flex items-center rounded border px-2 py-0.5 text-[11px] font-medium ${TIER_STYLES[row.tier]}`}
@@ -120,19 +120,19 @@ export function ArbitrageLedger({
                       {row.tier}
                     </span>
                   </td>
-                  <td className="px-4 py-2 text-right font-mono text-slate-300">
+                  <td className="px-4 py-2 text-right font-mono text-slate-700 dark:text-slate-300">
                     {formatTokens(row.tokensIn)}
                   </td>
-                  <td className="px-4 py-2 text-right font-mono text-slate-300">
+                  <td className="px-4 py-2 text-right font-mono text-slate-700 dark:text-slate-300">
                     {formatTokens(row.tokensOut)}
                   </td>
-                  <td className="px-4 py-2 text-right font-mono text-slate-300">
+                  <td className="px-4 py-2 text-right font-mono text-slate-700 dark:text-slate-300">
                     {row.unitCostPer1k.toFixed(3)}
                   </td>
-                  <td className="px-4 py-2 text-right font-mono text-slate-300">
+                  <td className="px-4 py-2 text-right font-mono text-slate-700 dark:text-slate-300">
                     {formatEur(row.costIncurred)}
                   </td>
-                  <td className="px-4 py-2 text-right font-mono text-slate-300">
+                  <td className="px-4 py-2 text-right font-mono text-slate-700 dark:text-slate-300">
                     {formatEur(row.frontierCost)}
                   </td>
                   <td className="px-4 py-2 text-right font-mono">
@@ -152,7 +152,7 @@ export function ArbitrageLedger({
       </section>
 
       <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 space-y-4">
-        <h2 className="text-sm font-semibold text-slate-200">
+        <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
           Break-even calculator
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -225,7 +225,7 @@ export function ArbitrageLedger({
         {rates.frontierRatePer1k.toFixed(3)} EUR per 1k tokens, local{' '}
         {rates.localRatePer1k.toFixed(2)} EUR per 1k tokens. Rates as of{' '}
         {rates.asOf}. Finance can correct these in{' '}
-        <code className="ml-1 rounded bg-slate-800 px-1 py-0.5 font-mono text-[11px] text-slate-300">
+        <code className="ml-1 rounded bg-slate-800 px-1 py-0.5 font-mono text-[11px] text-slate-700 dark:text-slate-300">
           {rates.configPath}
         </code>{' '}
         without a code change.

@@ -80,7 +80,7 @@ export function CapChangeDialog({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md p-1 text-slate-400 hover:bg-slate-800 hover:text-slate-200"
+            className="rounded-md p-1 text-slate-400 hover:bg-slate-800 hover:text-slate-900 dark:text-slate-100"
             aria-label="Close dialog"
           >
             <X className="h-4 w-4" />
@@ -90,13 +90,13 @@ export function CapChangeDialog({
         <dl className="mt-5 grid grid-cols-2 gap-3 text-xs">
           <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-3">
             <dt className="text-slate-500">Current cap</dt>
-            <dd className="mt-1 font-mono text-sm text-slate-200">
+            <dd className="mt-1 font-mono text-sm text-slate-900 dark:text-slate-100">
               {formatEurFromCents(budget.capCents)}
             </dd>
           </div>
           <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-3">
             <dt className="text-slate-500">New cap</dt>
-            <dd className="mt-1 font-mono text-sm text-slate-200">
+            <dd className="mt-1 font-mono text-sm text-slate-900 dark:text-slate-100">
               {previewValid ? formatEurFromCents(parsedCents) : '—'}
             </dd>
           </div>
@@ -140,7 +140,7 @@ export function CapChangeDialog({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-300 hover:bg-slate-800"
+            className="rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-800"
           >
             Cancel
           </button>

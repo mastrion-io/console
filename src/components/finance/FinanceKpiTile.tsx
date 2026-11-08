@@ -45,7 +45,7 @@ export function FinanceKpiTile({ tile, asOf, source }: FinanceKpiTileProps) {
         {tile.secondary && (
           <div className="mt-1 text-xs text-slate-400">
             <span className="text-slate-500">{tile.secondary.label}: </span>
-            <span className="font-mono text-slate-300">
+            <span className="font-mono text-slate-700 dark:text-slate-300">
               {formatFinanceValue(tile.secondary.value, tile.secondary.unit)}
             </span>
           </div>

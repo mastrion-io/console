@@ -4,16 +4,16 @@ import type { CostCenterSpend } from '@/lib/finance/demo-fixtures';
 export function SpendPanel({ costCenters }: { costCenters: CostCenterSpend[] }) {
   return (
     <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4">
-      <h2 className="mb-3 text-sm font-semibold text-slate-200">Spend by cost center</h2>
+      <h2 className="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Spend by cost center</h2>
       <ul className="space-y-2">
         {costCenters.map((cc) => (
           <li key={cc.id} className="flex items-center justify-between gap-3 text-xs">
             <div className="min-w-0">
-              <p className="truncate font-medium text-slate-200">{cc.name}</p>
+              <p className="truncate font-medium text-slate-900 dark:text-slate-100">{cc.name}</p>
               <p className="text-[11px] text-slate-500">{cc.owner}</p>
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-slate-300">
+              <span className="font-mono text-slate-700 dark:text-slate-300">
                 {cc.spendEur.toLocaleString('en-US')} EUR
               </span>
               <span

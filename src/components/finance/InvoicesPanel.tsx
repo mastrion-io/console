@@ -10,23 +10,23 @@ function statusClasses(status: VendorInvoice['status']): string {
     case 'paid':
       return 'border-emerald-800/70 bg-emerald-950/40 text-emerald-300';
     default:
-      return 'border-slate-700 bg-slate-800/60 text-slate-300';
+      return 'border-slate-700 bg-slate-800/60 text-slate-700 dark:text-slate-300';
   }
 }
 
 export function InvoicesPanel({ invoices }: { invoices: VendorInvoice[] }) {
   return (
     <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4">
-      <h2 className="mb-3 text-sm font-semibold text-slate-200">Vendor invoices</h2>
+      <h2 className="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Vendor invoices</h2>
       <ul className="space-y-2">
         {invoices.map((inv) => (
           <li key={inv.id} className="flex items-start justify-between gap-3 text-xs">
             <div className="min-w-0">
-              <p className="truncate font-medium text-slate-200">{inv.vendor}</p>
+              <p className="truncate font-medium text-slate-900 dark:text-slate-100">{inv.vendor}</p>
               <p className="truncate text-[11px] text-slate-500">{inv.note}</p>
             </div>
             <div className="flex shrink-0 flex-col items-end gap-1">
-              <span className="font-mono text-slate-300">
+              <span className="font-mono text-slate-700 dark:text-slate-300">
                 {inv.amountEur.toLocaleString('en-US')} EUR
               </span>
               <span

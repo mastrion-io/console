@@ -99,7 +99,7 @@ export function CostCenterTable() {
         <button
           type="button"
           onClick={() => downloadCsv(rows)}
-          className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-1.5 text-xs font-medium text-slate-200 hover:bg-slate-700/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+          className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-1.5 text-xs font-medium text-slate-900 dark:text-slate-100 hover:bg-slate-700/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
         >
           <Download className="w-3.5 h-3.5" aria-hidden="true" />
           Export CSV
@@ -122,7 +122,7 @@ export function CostCenterTable() {
                     <button
                       type="button"
                       onClick={() => handleSort(col.key)}
-                      className={`inline-flex items-center gap-1 hover:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded ${
+                      className={`inline-flex items-center gap-1 hover:text-slate-900 dark:text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded ${
                         col.numeric ? 'flex-row-reverse' : ''
                       }`}
                     >
@@ -148,8 +148,8 @@ export function CostCenterTable() {
                     {row.name}
                   </Link>
                 </td>
-                <td className="px-3 py-2 text-slate-300">{row.owner}</td>
-                <td className="px-3 py-2 text-right font-mono text-xs tabular-nums text-slate-200">
+                <td className="px-3 py-2 text-slate-700 dark:text-slate-300">{row.owner}</td>
+                <td className="px-3 py-2 text-right font-mono text-xs tabular-nums text-slate-900 dark:text-slate-100">
                   {formatEur(row.mtdSpendCents)}
                 </td>
                 <td className="px-3 py-2 text-right font-mono text-xs tabular-nums text-slate-400">
@@ -160,7 +160,7 @@ export function CostCenterTable() {
                     <UtilisationBar percent={row.utilisation} />
                   </div>
                 </td>
-                <td className="px-3 py-2 text-right font-mono text-xs tabular-nums text-slate-200">
+                <td className="px-3 py-2 text-right font-mono text-xs tabular-nums text-slate-900 dark:text-slate-100">
                   {formatEur(row.projectedMonthEndCents)}
                 </td>
                 <td className="px-3 py-2 text-right">

@@ -22,13 +22,13 @@ export function TopCostList({ title, items, emptyLabel }: TopCostListProps) {
             return (
               <li key={item.label} className="space-y-1">
                 <div className="flex items-center justify-between gap-2 text-xs">
-                  <span className="text-slate-200 truncate">
+                  <span className="text-slate-900 dark:text-slate-100 truncate">
                     {item.label}
                     {item.sublabel ? (
                       <span className="text-slate-500"> · {item.sublabel}</span>
                     ) : null}
                   </span>
-                  <span className="font-mono tabular-nums text-slate-300 shrink-0">
+                  <span className="font-mono tabular-nums text-slate-700 dark:text-slate-300 shrink-0">
                     {formatEur(item.amountCents)}
                   </span>
                 </div>

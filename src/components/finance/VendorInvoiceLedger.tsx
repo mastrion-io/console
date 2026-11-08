@@ -128,7 +128,7 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
       <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 space-y-4 print:hidden">
         <div className="flex flex-wrap items-end gap-4">
           <label className="flex flex-col gap-1 text-xs text-slate-400">
-            <span className="font-medium text-slate-300">Status</span>
+            <span className="font-medium text-slate-700 dark:text-slate-300">Status</span>
             <select
               value={statusFilter}
               onChange={(event) => setStatusFilter(event.target.value as InvoiceStatus | 'all')}
@@ -144,7 +144,7 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
           </label>
 
           <label className="flex flex-col gap-1 text-xs text-slate-400">
-            <span className="font-medium text-slate-300">Cost center</span>
+            <span className="font-medium text-slate-700 dark:text-slate-300">Cost center</span>
             <select
               value={costCenterFilter}
               onChange={(event) => setCostCenterFilter(event.target.value)}
@@ -160,7 +160,7 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
           </label>
 
           <label className="flex flex-col gap-1 text-xs text-slate-400">
-            <span className="font-medium text-slate-300">Issued from</span>
+            <span className="font-medium text-slate-700 dark:text-slate-300">Issued from</span>
             <input
               type="date"
               value={fromDate}
@@ -170,7 +170,7 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
           </label>
 
           <label className="flex flex-col gap-1 text-xs text-slate-400">
-            <span className="font-medium text-slate-300">Issued to</span>
+            <span className="font-medium text-slate-700 dark:text-slate-300">Issued to</span>
             <input
               type="date"
               value={toDate}
@@ -183,7 +183,7 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
             <button
               type="button"
               onClick={handleExport}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-700/80"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-1.5 text-sm text-slate-900 dark:text-slate-100 hover:bg-slate-700/80"
             >
               <Download className="h-4 w-4" />
               Export CSV
@@ -191,7 +191,7 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
             <button
               type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-700/80"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-1.5 text-sm text-slate-900 dark:text-slate-100 hover:bg-slate-700/80"
             >
               <Printer className="h-4 w-4" />
               Print
@@ -217,7 +217,7 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
             <button
               type="button"
               onClick={resetFilters}
-              className="text-xs text-slate-400 underline-offset-2 hover:text-slate-200 hover:underline"
+              className="text-xs text-slate-400 underline-offset-2 hover:text-slate-900 dark:text-slate-100 hover:underline"
             >
               Clear all
             </button>
@@ -252,20 +252,20 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
             {visible.map((row) => (
               <tr key={row.invoice.id} className="align-top hover:bg-slate-800/30">
                 <td className="px-4 py-3 text-slate-100">{row.invoice.vendor}</td>
-                <td className="px-4 py-3 font-mono text-xs text-slate-300">{row.invoice.invoiceNumber}</td>
+                <td className="px-4 py-3 font-mono text-xs text-slate-700 dark:text-slate-300">{row.invoice.invoiceNumber}</td>
                 <td className="px-4 py-3 font-mono text-xs text-slate-400">{row.invoice.issueDate}</td>
                 <td className="px-4 py-3 font-mono text-xs text-slate-400">{row.invoice.dueDate}</td>
-                <td className="px-4 py-3 text-right font-mono text-slate-200">{formatCents(row.netCents)}</td>
+                <td className="px-4 py-3 text-right font-mono text-slate-900 dark:text-slate-100">{formatCents(row.netCents)}</td>
                 <td className="px-4 py-3 text-right">
                   <div className="flex flex-col items-end gap-1">
                     {row.lines.map((line) => (
-                      <span key={line.id} className="font-mono text-xs text-slate-300">
+                      <span key={line.id} className="font-mono text-xs text-slate-700 dark:text-slate-300">
                         {formatVatRate(line.vatRate)}
                       </span>
                     ))}
                   </div>
                 </td>
-                <td className="px-4 py-3 text-right font-mono text-slate-200">{formatCents(row.vatCents)}</td>
+                <td className="px-4 py-3 text-right font-mono text-slate-900 dark:text-slate-100">{formatCents(row.vatCents)}</td>
                 <td className="px-4 py-3 text-right font-mono font-semibold text-slate-100">{formatCents(row.grossCents)}</td>
                 <td className="px-4 py-3">
                   <span
@@ -297,19 +297,19 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
       </section>
 
       <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 space-y-2">
-        <h2 className="text-sm font-semibold text-slate-200">USt notes</h2>
+        <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">USt notes</h2>
         <ul className="space-y-1 text-xs text-slate-400">
           {visible.flatMap((row) =>
             row.lines
               .filter((line) => line.vatRate === 0)
               .map((line) => (
                 <li key={`${row.invoice.id}-${line.id}`} className="flex flex-wrap items-center gap-2">
-                  <span className="font-mono text-slate-300">{row.invoice.invoiceNumber}</span>
-                  <span className="rounded-full border border-slate-700 bg-slate-800/60 px-2 py-0.5 font-mono text-[11px] text-slate-300">
+                  <span className="font-mono text-slate-700 dark:text-slate-300">{row.invoice.invoiceNumber}</span>
+                  <span className="rounded-full border border-slate-700 bg-slate-800/60 px-2 py-0.5 font-mono text-[11px] text-slate-700 dark:text-slate-300">
                     0 %
                   </span>
                   <span>{line.description}</span>
-                  <span className="text-slate-300">
+                  <span className="text-slate-700 dark:text-slate-300">
                     {line.vatExemptionReason ?? 'No reason recorded'}
                   </span>
                 </li>
@@ -326,7 +326,7 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
 
 function FilterChip({ label, onClear }: { label: string; onClear: () => void }) {
   return (
-    <span className="inline-flex items-center gap-1 rounded-full border border-slate-700 bg-slate-800/70 px-2.5 py-0.5 text-xs text-slate-200">
+    <span className="inline-flex items-center gap-1 rounded-full border border-slate-700 bg-slate-800/70 px-2.5 py-0.5 text-xs text-slate-900 dark:text-slate-100">
       {label}
       <button
         type="button"

@@ -79,7 +79,7 @@ export function BudgetBreakerPanel({ initialData }: BudgetBreakerPanelProps) {
         </div>
         {readOnly && (
           <span
-            className="inline-flex items-center gap-1.5 rounded-full border border-slate-700 bg-slate-900 px-2.5 py-1 text-[11px] font-medium text-slate-300"
+            className="inline-flex items-center gap-1.5 rounded-full border border-slate-700 bg-slate-900 px-2.5 py-1 text-[11px] font-medium text-slate-700 dark:text-slate-300"
             title={readOnlyReason}
           >
             <Lock className="h-3 w-3" />
@@ -108,9 +108,9 @@ export function BudgetBreakerPanel({ initialData }: BudgetBreakerPanelProps) {
               <div className="mt-4 space-y-2">
                 <div className="flex items-baseline justify-between text-xs">
                   <span className="text-slate-400">
-                    <span className="font-mono text-slate-200">{formatEurFromCents(budget.spendTodayCents)}</span>
+                    <span className="font-mono text-slate-900 dark:text-slate-100">{formatEurFromCents(budget.spendTodayCents)}</span>
                     {' '}of{' '}
-                    <span className="font-mono text-slate-200">{formatEurFromCents(budget.capCents)}</span>
+                    <span className="font-mono text-slate-900 dark:text-slate-100">{formatEurFromCents(budget.capCents)}</span>
                   </span>
                   <span className="text-slate-500">
                     {formatEurFromCents(budget.remainingCents)} left
@@ -122,11 +122,11 @@ export function BudgetBreakerPanel({ initialData }: BudgetBreakerPanelProps) {
               <dl className="mt-4 grid grid-cols-2 gap-3 text-xs">
                 <div>
                   <dt className="text-slate-500">Last trip</dt>
-                  <dd className="mt-0.5 text-slate-300">{formatTripTime(budget.lastTripAt)}</dd>
+                  <dd className="mt-0.5 text-slate-700 dark:text-slate-300">{formatTripTime(budget.lastTripAt)}</dd>
                 </div>
                 <div>
                   <dt className="text-slate-500">Rerouted requests</dt>
-                  <dd className="mt-0.5 flex items-center gap-1.5 font-mono text-slate-300">
+                  <dd className="mt-0.5 flex items-center gap-1.5 font-mono text-slate-700 dark:text-slate-300">
                     <RotateCcw className="h-3 w-3 text-slate-500" />
                     {budget.reroutedRequests.toLocaleString('de-DE')}
                   </dd>
@@ -146,7 +146,7 @@ export function BudgetBreakerPanel({ initialData }: BudgetBreakerPanelProps) {
                   onClick={() => setActive(budget)}
                   disabled={readOnly}
                   title={readOnly ? readOnlyReason : undefined}
-                  className="rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-200 hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
+                  className="rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-900 dark:text-slate-100 hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   Change cap
                 </button>

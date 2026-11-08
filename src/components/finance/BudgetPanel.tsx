@@ -6,23 +6,23 @@ export function BudgetPanel({ projection }: { projection: MonthEndProjection }) 
 
   return (
     <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4">
-      <h2 className="mb-3 text-sm font-semibold text-slate-200">Month end projection</h2>
+      <h2 className="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Month end projection</h2>
       <dl className="space-y-2 text-xs">
         <div className="flex items-center justify-between">
           <dt className="text-slate-400">Month to date</dt>
-          <dd className="font-mono text-slate-200">
+          <dd className="font-mono text-slate-900 dark:text-slate-100">
             {projection.mtdSpendEur.toLocaleString('en-US')} EUR
           </dd>
         </div>
         <div className="flex items-center justify-between">
           <dt className="text-slate-400">Projected</dt>
-          <dd className="font-mono text-slate-200">
+          <dd className="font-mono text-slate-900 dark:text-slate-100">
             {projection.projectedSpendEur.toLocaleString('en-US')} EUR
           </dd>
         </div>
         <div className="flex items-center justify-between">
           <dt className="text-slate-400">Budget</dt>
-          <dd className="font-mono text-slate-200">
+          <dd className="font-mono text-slate-900 dark:text-slate-100">
             {projection.budgetEur.toLocaleString('en-US')} EUR
           </dd>
         </div>
