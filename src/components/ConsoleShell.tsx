@@ -17,6 +17,7 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   Cpu,
+  Users,
 } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 
@@ -39,6 +40,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/finance/close-pack', label: 'Compliance Pack', icon: ShieldCheck },
   { href: '/finance/commitments', label: 'Commitments', icon: ShieldCheck },
   { href: '/finance/agent', label: 'Finance Agent', icon: Bot },
+  { href: '/admin/users', label: 'User Admin', icon: Users },
 ];
 
 interface ConsoleShellProps {
