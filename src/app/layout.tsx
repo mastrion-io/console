@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { ConsoleShell } from '@/components/ConsoleShell';
 
 export const metadata: Metadata = {
   title: 'Mastrion Enterprise Console | Sovereign AI Runtime Fabric',
@@ -17,8 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className="min-h-screen bg-slate-950 text-slate-100 antialiased selection:bg-brand-600 selection:text-white">
-        {children}
+      <body className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-brand-600 selection:text-white">
+        <ThemeProvider>
+          <ConsoleShell>
+            {children}
+          </ConsoleShell>
+        </ThemeProvider>
       </body>
     </html>
   );
