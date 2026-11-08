@@ -16,6 +16,7 @@ import {
   Moon,
   PanelLeftClose,
   PanelLeftOpen,
+  Cpu,
 } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 
@@ -29,6 +30,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { href: '/', label: 'Mission Control', icon: Activity },
+  { href: '/models', label: 'Models & Routing', icon: Cpu },
   { href: '/finance', label: 'CFO Overview', icon: LayoutDashboard },
   { href: '/finance/cost-centers', label: 'Cost centres', icon: Building2 },
   { href: '/finance/budgets', label: 'Budgets', icon: Wallet },
