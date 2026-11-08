@@ -10,24 +10,33 @@ import {
   Download,
   Trash2,
   CheckCircle2,
-  AlertTriangle,
   RefreshCw,
   Plus,
   Lock,
   Cpu,
   Layers,
   Sparkles,
+  FileCode,
+  HardDrive,
+  Network,
+  Copy,
+  Check,
 } from 'lucide-react';
 import { LocalModelSpec, FrontierProviderConfig, RoutingRule } from '@/lib/models/types';
 import { INITIAL_ADMIN_STATE } from '@/lib/models/initial-state';
+import { DEFAULT_CRD_YAML } from './crd-template';
 
 export default function ModelsAdminPage() {
-  const [activeTab, setActiveTab] = useState<'local' | 'frontier' | 'routing'>('local');
+  const [activeTab, setActiveTab] = useState<'local' | 'frontier' | 'routing' | 'crd' | 'clusters'>('local');
   const [localModels, setLocalModels] = useState<LocalModelSpec[]>(INITIAL_ADMIN_STATE.localModels);
   const [providers, setProviders] = useState<FrontierProviderConfig[]>(INITIAL_ADMIN_STATE.frontierProviders);
   const [rules, setRules] = useState<RoutingRule[]>(INITIAL_ADMIN_STATE.routingRules);
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
+
+  // YAML editor state
+  const [crdYaml, setCrdYaml] = useState(DEFAULT_CRD_YAML);
+  const [copied, setCopied] = useState(false);
 
   // New model input
   const [customModelName, setCustomModelName] = useState('');
@@ -176,10 +185,10 @@ export default function ModelsAdminPage() {
       )}
 
       {/* Navigation Tabs */}
-      <div className="flex border-b border-slate-200 dark:border-slate-800 space-x-6 text-sm font-medium">
+      <div className="flex border-b border-slate-200 dark:border-slate-800 space-x-6 text-sm font-medium overflow-x-auto">
         <button
           onClick={() => setActiveTab('local')}
-          className={`flex items-center gap-2 pb-3 border-b-2 transition-colors ${
+          className={`flex items-center gap-2 pb-3 border-b-2 whitespace-nowrap transition-colors ${
             activeTab === 'local'
               ? 'border-brand-600 text-brand-600 dark:text-brand-400 font-semibold'
               : 'border-transparent text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
@@ -191,7 +200,7 @@ export default function ModelsAdminPage() {
 
         <button
           onClick={() => setActiveTab('frontier')}
-          className={`flex items-center gap-2 pb-3 border-b-2 transition-colors ${
+          className={`flex items-center gap-2 pb-3 border-b-2 whitespace-nowrap transition-colors ${
             activeTab === 'frontier'
               ? 'border-brand-600 text-brand-600 dark:text-brand-400 font-semibold'
               : 'border-transparent text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
@@ -203,20 +212,65 @@ export default function ModelsAdminPage() {
 
         <button
           onClick={() => setActiveTab('routing')}
-          className={`flex items-center gap-2 pb-3 border-b-2 transition-colors ${
+          className={`flex items-center gap-2 pb-3 border-b-2 whitespace-nowrap transition-colors ${
             activeTab === 'routing'
               ? 'border-brand-600 text-brand-600 dark:text-brand-400 font-semibold'
               : 'border-transparent text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
           }`}
         >
           <Split className="w-4 h-4" />
-          AIEgressPolicy & Routing Rules ({rules.filter((r) => r.enabled).length} Enforced)
+          Routing Rules ({rules.filter((r) => r.enabled).length} Enforced)
+        </button>
+
+        <button
+          onClick={() => setActiveTab('crd')}
+          className={`flex items-center gap-2 pb-3 border-b-2 whitespace-nowrap transition-colors ${
+            activeTab === 'crd'
+              ? 'border-brand-600 text-brand-600 dark:text-brand-400 font-semibold'
+              : 'border-transparent text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
+          }`}
+        >
+          <FileCode className="w-4 h-4" />
+          AIEgressPolicy CRD (YAML)
+        </button>
+
+        <button
+          onClick={() => setActiveTab('clusters')}
+          className={`flex items-center gap-2 pb-3 border-b-2 whitespace-nowrap transition-colors ${
+            activeTab === 'clusters'
+              ? 'border-brand-600 text-brand-600 dark:text-brand-400 font-semibold'
+              : 'border-transparent text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
+          }`}
+        >
+          <Network className="w-4 h-4" />
+          Cluster Bootstrap & Sync
         </button>
       </div>
 
       {/* TAB 1: LOCAL SOVEREIGN MODELS */}
       {activeTab === 'local' && (
         <div className="space-y-6">
+          {/* Storage Location Explainer */}
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-xs flex items-start gap-3">
+            <HardDrive className="w-5 h-5 text-brand-600 dark:text-brand-400 mt-0.5 shrink-0" />
+            <div className="text-xs space-y-1">
+              <span className="font-semibold text-slate-900 dark:text-slate-100">
+                Sovereign Storage Architecture:
+              </span>
+              <p className="text-slate-500 dark:text-slate-400">
+                Model weights are stored as SHA256 content-addressable GGUF blobs in{' '}
+                <code className="rounded bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 font-mono text-slate-800 dark:text-slate-200">
+                  ~/.ollama/models/blobs/
+                </code>{' '}
+                with JSON manifests in{' '}
+                <code className="rounded bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 font-mono text-slate-800 dark:text-slate-200">
+                  ~/.ollama/models/manifests/
+                </code>
+                . In cluster deployments, weights mount from a shared ReadWriteMany CephFS or NVMe-oF persistent volume claim.
+              </p>
+            </div>
+          </div>
+
           {/* Pull Custom Local Model Bar */}
           <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-xs">
             <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
@@ -425,7 +479,7 @@ export default function ModelsAdminPage() {
         </div>
       )}
 
-      {/* TAB 3: ROUTING RULES & CRD */}
+      {/* TAB 3: ROUTING RULES */}
       {activeTab === 'routing' && (
         <div className="space-y-6">
           <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-xs flex items-center justify-between">
@@ -522,6 +576,114 @@ export default function ModelsAdminPage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      )}
+
+      {/* TAB 4: CRD YAML PREVIEW & EDITOR */}
+      {activeTab === 'crd' && (
+        <div className="space-y-4">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-xs flex items-center justify-between">
+            <div>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                <FileCode className="w-4 h-4 text-brand-600 dark:text-brand-400" /> AIEgressPolicy Custom Resource Definition
+              </h3>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                Declarative Kubernetes CRD (<code>networking.mastrion.io/v1alpha1</code>) synchronized with the live cluster controller.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(crdYaml);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }}
+                className="flex items-center gap-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              >
+                {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                {copied ? 'Copied' : 'Copy YAML'}
+              </button>
+              <button
+                onClick={() => showNotification('CRD applied and compiled to waypoint route table')}
+                className="rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-brand-700 transition-colors"
+              >
+                Apply & Compile
+              </button>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-4 shadow-inner">
+            <textarea
+              rows={24}
+              value={crdYaml}
+              onChange={(e) => setCrdYaml(e.target.value)}
+              className="w-full bg-transparent font-mono text-xs text-emerald-400 focus:outline-hidden leading-relaxed resize-y selection:bg-brand-800"
+              spellCheck={false}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* TAB 5: CLUSTER BOOTSTRAP & FEDERATION */}
+      {activeTab === 'clusters' && (
+        <div className="space-y-6">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-xs">
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+              <Network className="w-4 h-4 text-brand-600 dark:text-brand-400" /> Multi-Cluster Sovereign Federation
+            </h3>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+              Bootstrap secondary edge clusters from the primary control plane. Worker nodes automatically pull the compiled AIEgressPolicy route table, PII inspection rules, and model manifests over mutual TLS (mTLS).
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-xs space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="font-semibold text-sm text-slate-900 dark:text-slate-100">
+                  Control Plane (Primary)
+                </span>
+                <span className="rounded-full bg-emerald-100 dark:bg-emerald-950/60 px-2 py-0.5 text-[10px] font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-300 dark:border-emerald-800">
+                  ONLINE
+                </span>
+              </div>
+              <div className="space-y-1 text-xs text-slate-500 dark:text-slate-400">
+                <div className="flex justify-between">
+                  <span>Cluster ID:</span>
+                  <code className="text-slate-800 dark:text-slate-200">mst-cluster-fra-01</code>
+                </div>
+                <div className="flex justify-between">
+                  <span>API Server:</span>
+                  <code className="text-slate-800 dark:text-slate-200">https://192.168.4.68:8443</code>
+                </div>
+                <div className="flex justify-between">
+                  <span>Waypoint Daemon:</span>
+                  <code className="text-slate-800 dark:text-slate-200">port 8085 (PID 59682)</code>
+                </div>
+                <div className="flex justify-between">
+                  <span>Weight Storage:</span>
+                  <span className="text-slate-800 dark:text-slate-200">Local NVMe (CephFS Root)</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-xs space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="font-semibold text-sm text-slate-900 dark:text-slate-100">
+                  Bootstrap New Edge Cluster
+                </span>
+                <span className="rounded-full bg-brand-50 dark:bg-brand-950/60 px-2 py-0.5 text-[10px] font-mono text-brand-700 dark:text-brand-300 font-bold border border-brand-200 dark:border-brand-800">
+                  1-LINE CURL
+                </span>
+              </div>
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                Run this bootstrap command on any remote airgapped Kubernetes or bare-metal host to join the control plane:
+              </p>
+              <div className="rounded-lg bg-slate-900 p-2.5 font-mono text-[11px] text-brand-300 select-all overflow-x-auto">
+                curl -sSf https://192.168.4.68:8085/bootstrap.sh | sh -s -- --token mst_tok_991bce4 --control-plane https://192.168.4.68:8443
+              </div>
+            </div>
           </div>
         </div>
       )}
