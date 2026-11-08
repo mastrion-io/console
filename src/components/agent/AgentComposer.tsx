@@ -57,7 +57,7 @@ export function AgentComposer({
           onChange={(event) => setValue(event.target.value)}
           rows={2}
           placeholder="Ask about this screen…"
-          className="flex-1 resize-none rounded-md border border-slate-800 bg-slate-900 px-2 py-1.5 text-xs text-slate-100 placeholder:text-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+          className="flex-1 resize-none rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm px-2 py-1.5 text-xs text-slate-100 placeholder:text-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
         />
         <button
           type="submit"

@@ -8,7 +8,7 @@ interface DailySpendChartProps {
 export function DailySpendChart({ data }: DailySpendChartProps) {
   if (data.length === 0) {
     return (
-      <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+      <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4">
         <h2 className="text-sm font-semibold text-slate-100 mb-2">Daily spend</h2>
         <p className="text-xs text-slate-500">No spend recorded for this cost center.</p>
       </div>
@@ -18,7 +18,7 @@ export function DailySpendChart({ data }: DailySpendChartProps) {
   const max = Math.max(...data.map((d) => d.amountCents), 1);
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4">
       <h2 className="text-sm font-semibold text-slate-100 mb-3">Daily spend</h2>
       <div className="flex items-end gap-1 h-40" role="img" aria-label="Daily spend bar chart">
         {data.map((d) => {

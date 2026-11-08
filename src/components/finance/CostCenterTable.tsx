@@ -88,7 +88,7 @@ export function CostCenterTable() {
   }
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/60">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 py-3 border-b border-slate-800">
         <div>
           <h2 className="text-sm font-semibold text-slate-100">Cost center league table</h2>

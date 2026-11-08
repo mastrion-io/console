@@ -67,7 +67,7 @@ export default function FinancePreflightPage() {
         {items.map((item) => (
           <li
             key={item.id}
-            className="flex items-start justify-between gap-4 rounded-xl border border-slate-800 bg-slate-900/60 p-4"
+            className="flex items-start justify-between gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4"
           >
             <div>
               <p className="text-sm font-medium text-slate-200">{item.label}</p>

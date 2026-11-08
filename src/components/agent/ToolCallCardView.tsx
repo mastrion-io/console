@@ -22,7 +22,7 @@ function statusClasses(status: ToolCallStatus): string {
 
 export function ToolCallCardView({ item }: ToolCallCardViewProps) {
   return (
-    <div className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 space-y-2">
+    <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm px-3 py-2 space-y-2">
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-1.5 min-w-0">
           <Wrench className="w-3.5 h-3.5 text-slate-400 shrink-0" aria-hidden="true" />

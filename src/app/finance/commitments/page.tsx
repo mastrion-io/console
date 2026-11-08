@@ -43,19 +43,19 @@ export default function CommitmentsPage() {
       </header>
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-        <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-3">
+        <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-3">
           <div className="text-[11px] uppercase tracking-wide text-slate-400">Proven</div>
           <div className="mt-1 font-mono text-2xl text-emerald-300">{counts.proven}</div>
         </div>
-        <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-3">
+        <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-3">
           <div className="text-[11px] uppercase tracking-wide text-slate-400">Fixture only</div>
           <div className="mt-1 font-mono text-2xl text-amber-300">{counts.fixture}</div>
         </div>
-        <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-3">
+        <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-3">
           <div className="text-[11px] uppercase tracking-wide text-slate-400">Not built</div>
           <div className="mt-1 font-mono text-2xl text-rose-300">{counts.notBuilt}</div>
         </div>
-        <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-3">
+        <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-3">
           <div className="text-[11px] uppercase tracking-wide text-slate-400">Claimed</div>
           <div className="mt-1 font-mono text-2xl text-slate-200">{counts.total}</div>
         </div>

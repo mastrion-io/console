@@ -44,7 +44,7 @@ export default async function CostCenterDetailPage({ params }: CostCenterDetailP
         </Link>
       </div>
 
-      <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-4">
+      <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
           <div>
             <h1 className="text-lg font-semibold text-slate-100">{costCenter.name}</h1>

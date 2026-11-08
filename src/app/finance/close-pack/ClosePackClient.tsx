@@ -92,7 +92,7 @@ export function ClosePackClient() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 print:hidden">
+      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 print:hidden">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
           <label className="flex flex-col gap-1 text-xs text-slate-400">
             <span className="font-medium text-slate-300">Period start</span>
@@ -144,7 +144,7 @@ export function ClosePackClient() {
 
       {document && (
         <>
-          <section className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 print:hidden">
+          <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 print:hidden">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2 text-sm">
                 {verification?.passed ? (

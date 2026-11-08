@@ -31,7 +31,7 @@ export default function FinanceAgentPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
-          <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-5 space-y-4">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-sm p-5 space-y-4">
             <h2 className="text-sm font-semibold text-slate-200">Autonomous Actions &amp; Tool Authorisation</h2>
             <p className="text-xs text-slate-400 leading-relaxed">
               The agent has read access to current month-to-date spend, cost centers, active vendor invoices, and runway forecasting.

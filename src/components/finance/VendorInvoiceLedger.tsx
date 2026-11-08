@@ -125,7 +125,7 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
 
   return (
     <div className="space-y-6">
-      <section className="rounded-xl border border-slate-800/80 bg-slate-900/60 p-4 space-y-4 print:hidden">
+      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 space-y-4 print:hidden">
         <div className="flex flex-wrap items-end gap-4">
           <label className="flex flex-col gap-1 text-xs text-slate-400">
             <span className="font-medium text-slate-300">Status</span>
@@ -225,7 +225,7 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
         )}
       </section>
 
-      <section className="overflow-x-auto rounded-xl border border-slate-800/80 bg-slate-900/60">
+      <section className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm">
         <table className="min-w-full text-sm">
           <thead className="bg-slate-900/80 text-xs uppercase tracking-wide text-slate-400">
             <tr>
@@ -296,7 +296,7 @@ export function VendorInvoiceLedger({ invoices, costCenters, asOf }: VendorInvoi
         </table>
       </section>
 
-      <section className="rounded-xl border border-slate-800/80 bg-slate-900/60 p-4 space-y-2">
+      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 space-y-2">
         <h2 className="text-sm font-semibold text-slate-200">USt notes</h2>
         <ul className="space-y-1 text-xs text-slate-400">
           {visible.flatMap((row) =>

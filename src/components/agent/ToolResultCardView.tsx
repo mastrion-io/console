@@ -23,7 +23,7 @@ export function ToolResultCardView({ item }: ToolResultCardViewProps) {
   const isTabular = item.columns.length > 0 && item.rows.length > 0;
 
   return (
-    <div className="rounded-lg border border-slate-800 bg-slate-900/40">
+    <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-sm">
       <button
         type="button"
         onClick={() => setExpanded((prev) => !prev)}

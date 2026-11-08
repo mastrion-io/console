@@ -19,7 +19,7 @@ export function FinanceKpiTile({ tile, asOf, source }: FinanceKpiTileProps) {
       role="group"
       aria-label={`${tile.label}: ${formatFinanceValue(tile.value, tile.unit)}`}
       title={tooltip}
-      className="flex h-full min-h-[9.5rem] flex-col justify-between rounded-xl border border-slate-800/80 bg-slate-900/60 p-4 outline-none transition-colors focus-visible:border-brand-500 focus-visible:ring-2 focus-visible:ring-brand-500/60"
+      className="flex h-full min-h-[9.5rem] flex-col justify-between rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 outline-none transition-colors focus-visible:border-brand-500 focus-visible:ring-2 focus-visible:ring-brand-500/60"
     >
       <div className="flex items-start justify-between gap-2">
         <span className="text-xs font-medium uppercase tracking-wide text-slate-400">

@@ -57,7 +57,7 @@ export function ArbitrageLedger({
   return (
     <div className="space-y-6">
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4">
           <p className="text-xs uppercase tracking-wide text-slate-500">
             Saving today
           </p>
@@ -65,7 +65,7 @@ export function ArbitrageLedger({
             {formatEur(summary.today)}
           </p>
         </div>
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4">
           <p className="text-xs uppercase tracking-wide text-slate-500">
             Month to date
           </p>
@@ -73,7 +73,7 @@ export function ArbitrageLedger({
             {formatEur(summary.monthToDate)}
           </p>
         </div>
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4">
           <p className="text-xs uppercase tracking-wide text-slate-500">
             Annualised
             <span
@@ -89,7 +89,7 @@ export function ArbitrageLedger({
         </div>
       </section>
 
-      <section className="rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden">
+      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm overflow-hidden">
         <div className="px-4 py-3 border-b border-slate-800">
           <h2 className="text-sm font-semibold text-slate-200">
             Route comparison
@@ -151,7 +151,7 @@ export function ArbitrageLedger({
         </div>
       </section>
 
-      <section className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-4">
+      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 space-y-4">
         <h2 className="text-sm font-semibold text-slate-200">
           Break-even calculator
         </h2>

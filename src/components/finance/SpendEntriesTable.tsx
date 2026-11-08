@@ -19,7 +19,7 @@ export function SpendEntriesTable({ entries }: SpendEntriesTableProps) {
   const visible = entries.slice(start, start + PAGE_SIZE);
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/60">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm">
       <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800">
         <h2 className="text-sm font-semibold text-slate-100">Recent spend entries</h2>
         <span className="text-xs text-slate-500">

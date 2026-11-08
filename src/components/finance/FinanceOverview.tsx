@@ -86,7 +86,7 @@ export function FinanceOverview() {
 
   if (data.tiles.length === 0 && data.trajectory.length === 0) {
     return (
-      <div className="rounded-xl border border-slate-800/80 bg-slate-900/60 p-6 text-sm text-slate-400">
+      <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-6 text-sm text-slate-400">
         No finance data available for the current period.
       </div>
     );
@@ -98,7 +98,7 @@ export function FinanceOverview() {
       {data.trajectory.length > 0 ? (
         <FinanceTrajectoryChart trajectory={data.trajectory} />
       ) : (
-        <div className="rounded-xl border border-slate-800/80 bg-slate-900/60 p-6 text-sm text-slate-400">
+        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-6 text-sm text-slate-400">
           No spend trajectory data available.
         </div>
       )}

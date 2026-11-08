@@ -11,7 +11,7 @@ export function TopCostList({ title, items, emptyLabel }: TopCostListProps) {
   const max = items.length > 0 ? Math.max(...items.map((i) => i.amountCents), 1) : 1;
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4">
       <h2 className="text-sm font-semibold text-slate-100 mb-3">{title}</h2>
       {items.length === 0 ? (
         <p className="text-xs text-slate-500">{emptyLabel}</p>

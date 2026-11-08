@@ -6,7 +6,7 @@ export function SavingsPanel({ routes }: { routes: RouteSpend[] }) {
   const frontier = routes.filter((r) => r.tier === 'frontier');
 
   return (
-    <section className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+    <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4">
       <h2 className="mb-3 text-sm font-semibold text-slate-200">Local versus frontier</h2>
       <div className="grid grid-cols-2 gap-3 text-xs">
         <div className="rounded-lg border border-emerald-800/60 bg-emerald-950/30 p-3">

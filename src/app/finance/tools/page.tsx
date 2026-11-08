@@ -16,7 +16,7 @@ export default function FinanceToolsPage() {
         {FINANCE_TOOLS.map((tool) => (
           <article
             key={tool.name}
-            className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-2"
+            className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 space-y-2"
           >
             <h2 className="font-mono text-sm text-brand-400">{tool.name}</h2>
             <p className="text-xs text-slate-400 leading-relaxed">{tool.description}</p>
@@ -38,7 +38,7 @@ export default function FinanceToolsPage() {
         ))}
       </section>
 
-      <section className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-3">
+      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 space-y-3">
         <h2 className="text-sm font-semibold text-slate-200">Golden transcript</h2>
         <ul className="space-y-2">
           {GOLDEN_TRANSCRIPT.map((turn) => (

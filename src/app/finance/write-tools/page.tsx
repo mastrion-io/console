@@ -69,7 +69,7 @@ export default function WriteToolsPage() {
         {TOOLS.map((tool) => (
           <article
             key={tool.name}
-            className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-3"
+            className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 space-y-3"
           >
             <div className="flex items-center gap-2 text-slate-200">
               <span className="p-1.5 rounded-md bg-slate-800 text-brand-400">
@@ -106,7 +106,7 @@ export default function WriteToolsPage() {
         ))}
       </section>
 
-      <section className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-2">
+      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4 space-y-2">
         <h2 className="text-sm font-semibold text-slate-200">Policy</h2>
         <ul className="text-sm text-slate-400 space-y-1 list-disc list-inside">
           <li>Only one write tool may be invoked per turn. A human must review the previous write before another can be proposed.</li>

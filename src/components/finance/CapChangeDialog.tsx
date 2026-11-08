@@ -66,7 +66,7 @@ export function CapChangeDialog({
         role="dialog"
         aria-modal="true"
         aria-labelledby="cap-change-title"
-        className="w-full max-w-lg rounded-xl border border-slate-800 bg-slate-900 p-6 shadow-2xl"
+        className="w-full max-w-lg rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6 shadow-2xl"
       >
         <div className="flex items-start justify-between gap-4">
           <div>

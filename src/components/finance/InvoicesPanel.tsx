@@ -16,7 +16,7 @@ function statusClasses(status: VendorInvoice['status']): string {
 
 export function InvoicesPanel({ invoices }: { invoices: VendorInvoice[] }) {
   return (
-    <section className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+    <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4">
       <h2 className="mb-3 text-sm font-semibold text-slate-200">Vendor invoices</h2>
       <ul className="space-y-2">
         {invoices.map((inv) => (

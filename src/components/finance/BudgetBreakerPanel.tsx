@@ -95,7 +95,7 @@ export function BudgetBreakerPanel({ initialData }: BudgetBreakerPanelProps) {
           return (
             <article
               key={budget.id}
-              className="rounded-xl border border-slate-800 bg-slate-900/60 p-4"
+              className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>

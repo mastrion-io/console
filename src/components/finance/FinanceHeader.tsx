@@ -18,7 +18,7 @@ export function FinanceHeader({
       </div>
       <div className="flex items-center gap-2">
         <DemoChip demo={demo} />
-        <span className="rounded-md border border-slate-800 bg-slate-900/60 px-2 py-0.5 font-mono text-[11px] text-slate-400">
+        <span className="rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm px-2 py-0.5 font-mono text-[11px] text-slate-400">
           {demo ? 'MASTRION_DEMO=true' : 'MASTRION_DEMO=false'}
         </span>
       </div>

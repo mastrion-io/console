@@ -5,7 +5,7 @@ export function FinanceTrajectoryChartSkeleton() {
     <section
       aria-label="Spend trajectory loading"
       aria-busy="true"
-      className="rounded-xl border border-slate-800/80 bg-slate-900/60 p-4"
+      className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4"
     >
       <div className="mb-3 flex items-center justify-between">
         <div className="h-4 w-48 animate-pulse rounded bg-slate-800" />

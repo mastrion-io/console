@@ -23,7 +23,7 @@ export function FinanceTrajectoryChart({ trajectory }: FinanceTrajectoryChartPro
   return (
     <section
       aria-label="Spend trajectory"
-      className="rounded-xl border border-slate-800/80 bg-slate-900/60 p-4"
+      className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm p-4"
     >
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-sm font-semibold text-slate-200">Spend trajectory (90 days)</h2>
